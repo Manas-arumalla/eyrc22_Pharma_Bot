@@ -13,9 +13,13 @@ Built for the **e-Yantra Robotics Competition (eYRC) 2022-23**, organised by **e
 [![eYRC](https://img.shields.io/badge/eYRC-2022--23-0A66C2)](https://portal.e-yantra.org/)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
-<img src="PB_Task5_Windows/config_1/config_image.png" alt="Pharma Bot arena configuration" width="420"/>
+<p align="center">
+  <img src="docs/pharma-bot.png" alt="The physical AlphaBot robot" height="250"/>
+  &nbsp;&nbsp;
+  <img src="PB_Task5_Windows/config_1/config_image.png" alt="Pharma Bot arena configuration" height="250"/>
+</p>
 
-<sub>One of the five arena configurations the system parses. Coloured shapes are medicine packages waiting at shops; the grid is the road network the robot must navigate.</sub>
+<sub>Left: the AlphaBot built for the hardware run — Raspberry Pi, PiCamera and differential drive. Right: one of the five arena layouts the system parses, where coloured shapes are medicine packages at shops and the grid is the road network the robot must navigate.</sub>
 
 </div>
 
@@ -138,6 +142,12 @@ With the arena reduced to a graph, `path_planning()` finds the shortest route be
 
 Before touching hardware, the entire mission runs in a CoppeliaSim digital twin. Over the ZeroMQ Remote API, the controller places packages, traffic signals, barricades and start/end markers into the scene, then drives the AlphaBot model through pick-up and delivery actions. QR codes at each drop location are decoded (`pyzbar`) to confirm the correct destination for every package.
 
+<div align="center">
+<img src="docs/simulation.png" width="680"/>
+<br/>
+<sub>The system running live: the CoppeliaSim digital twin with the AlphaBot in the arena (centre), the overhead camera view used for localization (right), and the planner's console output (bottom).</sub>
+</div>
+
 ### 4. Vision-Based Localization (ArUco)
 
 To close the loop between the real world and the simulator, an overhead camera feed is rectified using four corner **ArUco markers** and a perspective transform, cropping out a clean top-down view of the arena. A fifth ArUco marker on the robot is then tracked, and its pose is converted into CoppeliaSim coordinates — letting a physical camera drive the simulated robot in real time.
@@ -160,17 +170,16 @@ On the physical robot, a Raspberry Pi streams frames from the PiCamera and runs 
 
 ## Demo
 
-A full recorded run is included in this repository:
+<div align="center">
+<img src="docs/demo.gif" alt="Pharma Bot delivery run" width="480"/>
+<br/>
+<sub>A short preview of the robot running the mission.</sub>
+</div>
 
-**[`Videos/Final.mp4`](Videos/Final.mp4)** — the complete mission executed end-to-end *(stored via Git LFS)*.
+The complete recorded runs are available in the repository:
 
-> **Tip:** For a quick preview on the repo's front page, add a short screen-capture GIF (10–20 s of a delivery run) at `docs/demo.gif` and embed it here:
->
-> ```markdown
-> ![Pharma Bot delivery run](docs/demo.gif)
-> ```
->
-> Good moments to capture: the arena being built in CoppeliaSim, a pick-up at a shop, and the AlphaBot following the line and turning at a node.
+- **[`Videos/Final.mp4`](Videos/Final.mp4)** — the full mission executed end-to-end *(stored via Git LFS)*
+- **[`docs/pharma-bot-prev.mp4`](docs/pharma-bot-prev.mp4)** — the lightweight preview clip shown above
 
 ---
 
