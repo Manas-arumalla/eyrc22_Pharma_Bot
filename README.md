@@ -260,8 +260,6 @@ The controller then sets up the scene, plans the routes, and drives the robot th
 - Achieved real-time **PID line-following** with encoder-based turns and QR-verified deliveries on hardware.
 - Evaluation outputs for the graded tasks are included (`task4b_output.txt`, `task6_original_output.txt`).
 
-> _Add your team's final standing / score / certificate from the eYRC 2022-23 leaderboard here once you'd like to highlight it._
-
 ---
 
 ## Acknowledgements
